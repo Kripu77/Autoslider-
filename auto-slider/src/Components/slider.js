@@ -5,10 +5,24 @@ import {FaQuoteRight} from 'react-icons/fa'
 
 const Slider = () => {
 const [people, setPeople] = useState(data);
-const [ index, setIndex] = useState(2);
+const [ index, setIndex] = useState(0);
+
+//to check the index size
+const checkFn = (index) =>{
+    if(index>people.length-1){
+        return 0
+    }
+    if(index<0){
+   return people.length-1
+    }
+    return index
+}
 
 useEffect(()=>{
-
+setInterval(()=>{
+    setIndex((prevIndex)=>
+    checkFn(prevIndex+1))
+}, 2000)
 },[])
 
     return (
@@ -34,8 +48,8 @@ if(personIndex === index){
             <FaQuoteRight className="icon"/>
         </article>
     })}
-    <button className="prev" onClick={()=>setIndex(index+1)}> <FiChevronLeft/></button>
-       <button className="next" onClick={()=>{setIndex(index-1)}}> <FiChevronRight/></button>
+    <button className="prev" onClick={()=>setIndex((()=>checkFn(index-1)))}> <FiChevronLeft/></button>
+       <button className="next" onClick={()=>{setIndex((()=>checkFn(index+1)))}}> <FiChevronRight/></button>
 </div>
       </section>
     )
