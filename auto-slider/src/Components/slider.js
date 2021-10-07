@@ -17,7 +17,8 @@ if(index<0){
     setIndex(people.length-1)
 }
 
-}, [index]) //useEffect will only trrigger if the value of index changes
+}, [index]) //useEffect will only trrigger if the value of index changes and 
+// if we donot setup the index dependency then our function of checking the index at what state it is will not work.
 
 //for autoslider we will use setInterval function
 useEffect(()=>{
