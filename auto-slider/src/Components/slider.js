@@ -19,10 +19,11 @@ const checkFn = (index) =>{
 }
 
 useEffect(()=>{
-setInterval(()=>{
+let cleanUp=setInterval(()=>{
     setIndex((prevIndex)=>
     checkFn(prevIndex+1))
-}, 2000)
+}, 4000)
+return ()=> clearInterval(cleanUp);
 },[])
 
     return (
@@ -30,7 +31,7 @@ setInterval(()=>{
 <div className="title">
     <h2>
         <span> /</span>
-
+Inspirational Quotes
     </h2>
 </div>
 <div className="section-center">
@@ -40,6 +41,10 @@ let position = 'nextSlide'
 if(personIndex === index){
     position= 'activeSlide';
 }
+if(personIndex===index-1 || (index==0 && personIndex === people.length-1)){
+    position= 'lastSlide';
+}
+
         return <article key= {id} className={position}>
             <img src={image} alt={name}  className="person-img"/>
             <h4> {name}</h4>
