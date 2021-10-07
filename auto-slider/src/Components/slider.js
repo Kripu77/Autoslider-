@@ -20,6 +20,15 @@ if(index<0){
 }, [index]) //useEffect will only trrigger if the value of index changes
 
 //for autoslider we will use setInterval function
+useEffect(()=>{
+   const slider= setInterval(()=>{
+        setIndex((prevState)=>{
+             return prevState+1
+        })
+    }, 4000)
+    // the slider effect will be faulty if we do not place clear interval inside the useeffect
+    return ()=>{clearInterval(slider)}
+},[index])
 
     return (<section className="section">
         <h2 className="title"> <span>//</span>  Inspirational Quotes</h2>
